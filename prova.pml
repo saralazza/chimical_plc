@@ -1,5 +1,5 @@
 bool px[12];
-bool v8, cycle, v9, mixer;
+bool cycle, v1, v3, v5, v6, v8, v9, v11, v12, v15, v17, v18, v20, v22, v23, v24, v25, v29, pump1, pump2, mixer, heater;
 
 mtype = { emp, sol42C, sol82C, sol70C, sol140C, sol84C, sol42H, sol84H, undef1, undef2, water28C, water56C, water28H, water56H};
 
@@ -74,6 +74,17 @@ mtype B7 = emp;
     ((i == 4) && psi(4,j) && !psi(1,j) && !psi(3,j) )\
 )
 
+/*
+    ((i == 5) && (B3 == emp && B4 == sol70C)) || \
+    ((i == 6) && (B4 == emp && B5 == sol70C)) ||\
+    ((i == 7) && (B5 == sol42H && (B3 == water28H))) ||\
+    ((i == 8) && (B5 == emp && (B3 == sol42H))) ||\
+    ((i == 9) && (B7 == sol42C)) || \
+    ((i == 10) && (B6 == water28C)) ||\
+    ((i == 11) && (B7 == emp && (B1 == sol42C))) ||\
+    ((i == 12) && (B6 == emp && (B2 == water28C))) \
+*/
+
 #define result(i,j) (\
     ((i == 1) && (B1 == emp && (B3 == sol42C || B3 == sol82C))) || \
     ((i == 2) && (B2 == emp && (B3 == water28C || B3 == water56C))) ||\
@@ -120,6 +131,72 @@ proctype B2toB3(){
     }
     od
 }
+
+/*
+proctype B3toB4(){
+    do
+    :: atomic{
+        (cycle==0 && B3!=emp && v11==true)-> B4 = B3; B3 = emp; cycle = 1;
+    }
+    od
+}
+
+proctype B4toB5(){
+    do
+    :: atomic{
+        (cycle==0 && B4!=emp && v12==true)-> B5 = B4; B4 = emp; cycle = 1;
+    }
+    od
+}
+
+proctype B5toB6(){
+    do
+    :: atomic{
+        (cycle==0 && B5!=emp && heater==true)-> B5 = sol42H; B6 = water28H; cycle = 1;
+    }
+    od
+}
+
+proctype coolB6(){
+    do
+    :: atomic{
+        (cycle==0 && B6!=emp && v29==true)-> B6 = water28C; cycle = 1;
+    }
+    od
+}
+
+proctype B5toB7(){
+    do
+    :: atomic{
+        (cycle==0 && B5!=emp && v15==true)-> B5 = emp; B7 = sol42H; cycle = 1;
+    }
+    od
+}
+
+proctype coolB7(){
+    do
+    :: atomic{
+        (cycle==0 && B7!=emp && v17==true)-> B7 = sol42C; cycle = 1;
+    }
+    od
+}
+
+proctype B6toB2(){
+    do
+    :: atomic{
+        (cycle==0 && B6!=emp && v18==v23==v22==v1==v3==pump1==true)-> B6 = emp; B2 = water28C; cycle = 1;
+    }
+    od
+}
+
+proctype B7toB1(){
+    do
+    :: atomic{
+        (cycle==0 && B7!=emp && v20==v24==v25==v5==v6==pump2==true)-> B7 = emp; B1 = sol42C; cycle = 1;
+    }
+    od
+}
+*/
 
 inline prova(x,y){
     if
