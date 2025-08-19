@@ -98,6 +98,14 @@ inline PB1(i){
     :: (i==2) -> v9=true; px[procnr(i)]= true; printf("PB1 called: i=2, v9=true\n");
     :: (i==3) -> v8=true; mixer = true; px[procnr(i)]= true; printf("PB1 called: i=3, v8=true, mixer = true\n");
     :: (i==4) -> v9=true; mixer = true; px[procnr(i)]= true; printf("PB1 called: i=4, v9=true, mixer = true\n");
+    /*:: (i==5) -> v11=true; px[procnr(i)]= true; printf("PB1 called: i=5, v11=true\n");
+    :: (i==6) -> v12=true; px[procnr(i)]= true; printf("PB1 called: i=6, v12=true\n");
+    :: (i==7) -> heater = true; px[procnr(i)]= true; printf("PB1 called: i=7, heater = true\n");
+    :: (i==8) -> v15=true; px[procnr(i)]= true; printf("PB1 called: i=8, v15=true, mixer = true\n");
+    :: (i==9) -> v17=true; px[procnr(i)]= true; printf("PB1 called: i=9, v17=true\n");
+    :: (i==10) -> v29=true; px[procnr(i)]= true; printf("PB1 called: i=10, v29=true\n");
+    :: (i==11) -> v18=true; v23=true; v22=true; v1=true; v3=true; pump1=true; px[procnr(i)]= true; printf("PB1 called: i=11, v18=true; v23=true; v22=true; v1=true; v3=true; pump1=true\n");
+    :: (i==12) -> v20=true; v24=true; v25=true; v5=true; v6=true; pump2=true; px[procnr(i)]= true; printf("PB1 called: i=12, v20=true; v24=true; v25=true; v5=true; v6=true; pump2=true\n");*/
     fi
 }
 
@@ -107,6 +115,14 @@ inline PB0(i){
     :: (i==2) -> v9=false; px[procnr(i)]= false; printf("PB0 called: i=2, v9=false\n");
     :: (i==3) -> v8=false; mixer = false; px[procnr(i)]= false; printf("PB0 called: i=3, v8=false, mixer =false\n");
     :: (i==4) -> v9=false; mixer = false; px[procnr(i)]= false; printf("PB0 called: i=4, v9=false, mixer =false\n");
+    /*:: (i==5) -> v11=false; px[procnr(i)]= false; printf("PB0 called: i=5, v11=false\n");
+    :: (i==6) -> v12=false; px[procnr(i)]= false; printf("PB0 called: i=6, v12=false\n");
+    :: (i==7) -> heater = false; px[procnr(i)]= false; printf("PB0 called: i=7, heater = false\n");
+    :: (i==8) -> v15=false; px[procnr(i)]= false; printf("PB0 called: i=8, v15=false, mixer = false\n");
+    :: (i==9) -> v17=false; px[procnr(i)]= false; printf("PB0 called: i=9, v17=false\n");
+    :: (i==10) -> v29=false; px[procnr(i)]= false; printf("PB0 called: i=10, v29=false\n");
+    :: (i==11) -> v18=false; v23=false; v22=false; v1=false; v3=false; pump1=false; px[procnr(i)]= false; printf("PB0 called: i=11, v18=false; v23=false; v22=false; v1=false; v3=false; pump1=false\n");
+    :: (i==12) -> v20=false; v24=false; v25=false; v5=false; v6=false; pump2=false; px[procnr(i)]= false; printf("PB called: i=12, v20=false; v24=false; v25=false; v5=false; v6=false; pump2=false\n");*/
     fi
 }
 
