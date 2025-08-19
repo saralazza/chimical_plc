@@ -68,7 +68,7 @@ proctype B2toB3(){
 
 inline prova(x,y){
     if
-    :: (x==emp && y==sol42C) -> printf("daje\n");
+    :: (y==sol70C) -> printf("daje\n");
     :: else -> skip
     fi
 }
@@ -81,17 +81,17 @@ proctype control(){
         j=1;
         do
         :: (i<5) ->
-            printf(" i = %d, processo %d che vale %d\n", i, procnr(i), px[procnr(i)]);
+            //printf(" i = %d, processo %d che vale %d\n", i, procnr(i), px[procnr(i)]);
             if 
             :: (theta(i,j) && !px[procnr(i)]) -> PB1(i);
-            :: (result(i,j) && px[procnr(i)]) -> PB0(i);
+            :: (result(i,j) && px[procnr(i)]) -> PB0(i); prova(B1, B3)
             :: else -> skip
             fi;
             if
             :: (j==1) -> j=2;
             :: (j==2) -> j=1 ; i=i+1
             fi
-        :: (i==4) -> goto endcycle
+        :: (i>=5) -> goto endcycle
         od;
         endcycle: cycle=0
     } 
