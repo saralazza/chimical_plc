@@ -16,12 +16,7 @@ mtype B7 = emp;
 #define false 0
 #define procnr(i) ((i)-1)
 
-#define phi(i,j)( \
-    ((i == 1) && ((B1 == sol42C || B1 == sol82C) && (B3 == emp)) ) || \
-    ((i == 2) && ((B2 == water56C || B2 == water28C) && (B3 == emp)) ) || \
-    ((i == 3) && ((B1 == sol42C || B1 == sol82C) && (B3 == water28C)) ) || \
-    ((i == 4) && ((B2 == water28C || B2 == water56C) && (B3 == sol42C)) ) || \
-    ((i == 5) && ((B3 == sol70C) && (B4 == emp || B4 == sol70C)) ) || \
+/*
     ((i == 6) && ((B4 == sol70C || B4 == sol140C) && (B5 == emp)) ) || \
     ((i == 7) && ((B5 == sol70C) && (B6 == emp || B6 == water28C || B6 == water28H)) ) || \
     ((i == 8) && ((B5 == sol42H) && (B7 == emp || B7 == sol42C || B7 == sol42H)) ) || \
@@ -29,13 +24,17 @@ mtype B7 = emp;
     ((i == 10) && ((B6 == water28H || B6 == water56H)) ) || \
     ((i == 11) && ((B7 == sol42C || B7 == sol84C) && (B1 == emp || B1 == sol42C)) ) || \
     ((i == 12) && ((B6 == water28C || B6 == water56C) && (B2 == emp || B2 == water28C)) ) \
+*/
+
+#define phi(i,j)( \
+    ((i == 1) && ((B1 == sol42C || B1 == sol82C) && (B3 == emp)) ) || \
+    ((i == 2) && ((B2 == water56C || B2 == water28C) && (B3 == emp)) ) || \
+    ((i == 3) && ((B1 == sol42C || B1 == sol82C) && (B3 == water28C)) ) || \
+    ((i == 4) && ((B2 == water28C || B2 == water56C) && (B3 == sol42C)) ) || \
+    ((i == 5) && ((B3 == sol70C) && (B4 == emp || B4 == sol70C)) ) \
 )
 
-#define psi(i,j)( \
-    ((i == 1) && phi(1,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(5)] && !px[procnr(11)]) ) || \
-    ((i == 2) && phi(2,j) && (!px[procnr(1)] && !px[procnr(3)] && !px[procnr(5)] && !px[procnr(12)]) ) || \
-    ((i == 3) && phi(3,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(5)] && !px[procnr(11)]) ) || \
-    ((i == 4) && phi(4,j) && (!px[procnr(1)] && !px[procnr(3)] && !px[procnr(5)] && !px[procnr(12)]) )  || \
+/*
     ((i == 5) && phi(5,j) && (!px[procnr(1)] && !px[procnr(2)] && !px[procnr(3)] && !px[procnr(4)] && !px[procnr(6)]) ) || \
     ((i == 6) && phi(6,j) && (!px[procnr(5)] && !px[procnr(7)] && !px[procnr(8)]) ) || \
     ((i == 7) && phi(7,j) && (!px[procnr(6)] && !px[procnr(8)] && !px[procnr(10)] && !px[procnr(12)]) ) || \
@@ -44,13 +43,20 @@ mtype B7 = emp;
     ((i == 10) && phi(10,j) && (!px[procnr(7)] && !px[procnr(12)]) ) || \
     ((i == 11) && phi(11,j) && (!px[procnr(1)] && !px[procnr(3)] && !px[procnr(8)] && !px[procnr(9)]) ) || \
     ((i == 12) && phi(12,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(7)] && !px[procnr(10)]) ) \
+*/
+
+#define psi(i,j)( \
+    ((i == 1) && phi(1,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(5)] && !px[procnr(11)]) ) || \
+    ((i == 2) && phi(2,j) && (!px[procnr(1)] && !px[procnr(3)] && !px[procnr(5)] && !px[procnr(12)]) ) || \
+    ((i == 3) && phi(3,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(5)] && !px[procnr(11)]) ) || \
+    ((i == 4) && phi(4,j) && (!px[procnr(1)] && !px[procnr(3)] && !px[procnr(5)] && !px[procnr(12)]) )  \
 )
 
-#define theta(i,j) ( \
+/*
     ((i == 1) && psi(1,j) && !psi(5,j) ) || \
     ((i == 2) && psi(2,j) && !psi(1,j) && !psi(3,j) && !psi(5,j) ) || \
     ((i == 3) && psi(3,j) && !psi(5,j) ) || \
-    ((i == 4) && psi(4,j) && !psi(1,j) && !psi(3,j) && !psi(5,j)) || \
+    ((i == 4) && psi(4,j) && !psi(1,j) && !psi(3,j) && !psi(5,j))\
     ((i == 5) && psi(5,j) && !psi(6,j) ) || \
     ((i == 6) && psi(6,j) && !psi(7,j) && !psi(8,j) ) || \
     ((i == 7) && psi(7,j) ) || \
@@ -59,14 +65,14 @@ mtype B7 = emp;
     ((i == 10) && psi(10,j) && !psi(7,j) ) || \
     ((i == 11) && psi(11,j) && !psi(1,j) && !psi(3,j) && !psi(8,j) && !psi(9,j) ) || \
     ((i == 12) && psi(12,j) && !psi(2,j) && !psi(4,j) && !psi(7,j) && !psi(10,j) ) \
-)
+*/
 
-/*#define theta(i,j) ( \
-    ((i == 1) && ((B1 == sol42C || B1 == sol82C) && (B3 == emp)) && (!px[procnr(2)]) ) || \
-    ((i == 2) && ((B2 == water56C || B2 == water28C) && (B3 == emp)) && (!px[procnr(1)]) ) || \
-    ((i == 3) && ((B1 == sol42C || B1 == sol82C) && (B3 == water28C)) && (!px[procnr(2)]) ) || \
-    ((i == 4) && ((B2 == water28C || B2 == water56C) && (B3 == sol42C)) && (!px[procnr(1)]) ) \
-)*/
+#define theta(i,j) ( \
+    ((i == 1) && psi(1,j) ) || \
+    ((i == 2) && psi(2,j) && !psi(1,j) && !psi(3,j) ) || \
+    ((i == 3) && psi(3,j) ) || \
+    ((i == 4) && psi(4,j) && !psi(1,j) && !psi(3,j) )\
+)
 
 #define result(i,j) (\
     ((i == 1) && (B1 == emp && (B3 == sol42C || B3 == sol82C))) || \
