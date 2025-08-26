@@ -18,8 +18,6 @@ mtype B7 = emp;
 
 /*
     PHI
-    ((i == 6) && ((B4 == sol70C || B4 == sol140C) && (B5 == emp)) ) || \
-    ((i == 7) && ((B5 == sol70C) && (B6 == emp || B6 == water28C || B6 == water28H)) ) || \
     ((i == 8) && ((B5 == sol42H) && (B7 == emp || B7 == sol42C || B7 == sol42H)) ) || \
     ((i == 9) && ((B7 == sol42H || B7 == sol84H)) ) || \
     ((i == 10) && ((B6 == water28H || B6 == water56H)) ) || \
@@ -33,13 +31,12 @@ mtype B7 = emp;
     ((i == 3) && ((B1 == sol42C || B1 == sol82C) && (B3 == water28C)) ) || \
     ((i == 4) && ((B2 == water28C || B2 == water56C) && (B3 == sol42C)) ) || \
     ((i == 5) && ((B3 == sol70C) && (B4 == emp || B4 == sol70C)) ) || \
-    ((i == 6) && ((B4 == sol70C || B4 == sol140C) && (B5 == emp)) ) \
+    ((i == 6) && ((B4 == sol70C || B4 == sol140C) && (B5 == emp)) ) || \
+    ((i == 7) && ((B5 == sol70C) && (B6 == emp || B6 == water28C || B6 == water28H)) ) \
 )
 
 /*
     PSI
-    ((i == 6) && phi(6,j) && (!px[procnr(5)] && !px[procnr(7)] && !px[procnr(8)]) ) || \
-    ((i == 7) && phi(7,j) && (!px[procnr(6)] && !px[procnr(8)] && !px[procnr(10)] && !px[procnr(12)]) ) || \
     ((i == 8) && phi(8,j) && (!px[procnr(6)] && !px[procnr(7)] && !px[procnr(9)] && !px[procnr(11)]) ) || \
     ((i == 9) && phi(9,j) && (!px[procnr(8)] && !px[procnr(11)]) ) || \
     ((i == 10) && phi(10,j) && (!px[procnr(7)] && !px[procnr(12)]) ) || \
@@ -53,7 +50,8 @@ mtype B7 = emp;
     ((i == 3) && phi(3,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(5)] && !px[procnr(11)]) ) || \
     ((i == 4) && phi(4,j) && (!px[procnr(1)] && !px[procnr(3)] && !px[procnr(5)] && !px[procnr(12)]) ) || \
     ((i == 5) && phi(5,j) && (!px[procnr(1)] && !px[procnr(2)] && !px[procnr(3)] && !px[procnr(4)] && !px[procnr(6)]) ) || \
-    ((i == 6) && phi(6,j) && (!px[procnr(5)] && !px[procnr(7)] && !px[procnr(8)]) ) \
+    ((i == 6) && phi(6,j) && (!px[procnr(5)] && !px[procnr(7)] && !px[procnr(8)]) ) || \
+    ((i == 7) && phi(7,j) && (!px[procnr(6)] && !px[procnr(8)] && !px[procnr(10)] && !px[procnr(12)]) ) \
 )
 
 /*
@@ -76,15 +74,14 @@ mtype B7 = emp;
     ((i == 1) && psi(1,j) && !psi(5,j) ) || \
     ((i == 2) && psi(2,j) && !psi(1,j) && !psi(3,j) && !psi(5,j) ) || \
     ((i == 3) && psi(3,j) && !psi(5,j) ) || \
-    ((i == 4) && psi(4,j) && !psi(1,j) && !psi(3,j) && !psi(5,j)) ||\
+    ((i == 4) && psi(4,j) && !psi(1,j) && !psi(3,j) && !psi(5,j)) || \
     ((i == 5) && psi(5,j) && !psi(6,j) ) || \
-    ((i == 6) && psi(6,j) ) \
+    ((i == 6) && psi(6,j) && !psi(7,j) ) || \
+    ((i == 7) && psi(7,j) ) \
 )
 
 /*
     RESULT
-    ((i == 6) && (B4 == emp && B5 == sol70C)) ||\
-    ((i == 7) && (B5 == sol42H && (B3 == water28H))) ||\
     ((i == 8) && (B5 == emp && (B3 == sol42H))) ||\
     ((i == 9) && (B7 == sol42C)) || \
     ((i == 10) && (B6 == water28C)) ||\
@@ -98,7 +95,8 @@ mtype B7 = emp;
     ((i == 3) && (B1 == emp && (B3 == sol70C))) || \
     ((i == 4) && (B2 == emp && (B3 == sol70C))) || \
     ((i == 5) && (B3 == emp && B4 == sol70C)) || \
-    ((i == 6) && (B4 == emp && B5 == sol70C)) \
+    ((i == 6) && (B4 == emp && B5 == sol70C)) || \
+    ((i == 7) && (B5 == sol42H && (B6 == water28H))) \
 )
 
 inline PB1(i){
@@ -109,8 +107,8 @@ inline PB1(i){
     :: (i==4) -> v9=true; mixer = true; px[procnr(i)]= true; printf("PB1 called: i=4, v9=true, mixer = true\n");
     :: (i==5) -> v11=true; px[procnr(i)]= true; printf("PB1 called: i=5, v11=true\n");
     :: (i==6) -> v12=true; px[procnr(i)]= true; printf("PB1 called: i=6, v12=true\n");
-    /*:: (i==7) -> heater = true; px[procnr(i)]= true; printf("PB1 called: i=7, heater = true\n");
-    :: (i==8) -> v15=true; px[procnr(i)]= true; printf("PB1 called: i=8, v15=true, mixer = true\n");
+    :: (i==7) -> heater = true; px[procnr(i)]= true; printf("PB1 called: i=7, heater = true\n");
+    /*:: (i==8) -> v15=true; px[procnr(i)]= true; printf("PB1 called: i=8, v15=true, mixer = true\n");
     :: (i==9) -> v17=true; px[procnr(i)]= true; printf("PB1 called: i=9, v17=true\n");
     :: (i==10) -> v29=true; px[procnr(i)]= true; printf("PB1 called: i=10, v29=true\n");
     :: (i==11) -> v18=true; v23=true; v22=true; v1=true; v3=true; pump1=true; px[procnr(i)]= true; printf("PB1 called: i=11, v18=true; v23=true; v22=true; v1=true; v3=true; pump1=true\n");
@@ -126,8 +124,8 @@ inline PB0(i){
     :: (i==4) -> v9=false; mixer = false; px[procnr(i)]= false; printf("PB0 called: i=4, v9=false, mixer =false\n");
     :: (i==5) -> v11=false; px[procnr(i)]= false; printf("PB0 called: i=5, v11=false\n");
     :: (i==6) -> v12=false; px[procnr(i)]= false; printf("PB0 called: i=6, v12=false\n");
-    /*:: (i==7) -> heater = false; px[procnr(i)]= false; printf("PB0 called: i=7, heater = false\n");
-    :: (i==8) -> v15=false; px[procnr(i)]= false; printf("PB0 called: i=8, v15=false, mixer = false\n");
+    :: (i==7) -> heater = false; px[procnr(i)]= false; printf("PB0 called: i=7, heater = false\n");
+    /*:: (i==8) -> v15=false; px[procnr(i)]= false; printf("PB0 called: i=8, v15=false, mixer = false\n");
     :: (i==9) -> v17=false; px[procnr(i)]= false; printf("PB0 called: i=9, v17=false\n");
     :: (i==10) -> v29=false; px[procnr(i)]= false; printf("PB0 called: i=10, v29=false\n");
     :: (i==11) -> v18=false; v23=false; v22=false; v1=false; v3=false; pump1=false; px[procnr(i)]= false; printf("PB0 called: i=11, v18=false; v23=false; v22=false; v1=false; v3=false; pump1=false\n");
@@ -173,7 +171,6 @@ proctype B4toB5(){
     od
 }
 
-/*
 proctype B5toB6(){
     do
     :: atomic{
@@ -182,6 +179,7 @@ proctype B5toB6(){
     od
 }
 
+/*
 proctype coolB6(){
     do
     :: atomic{
@@ -225,7 +223,7 @@ proctype B7toB1(){
 
 inline prova(x,y){
     if
-    :: (x==emp && y==sol70C) -> printf("daje\n");
+    :: (x==sol42H && y==water28H) -> printf("daje\n");
     :: else -> skip
     fi
 }
@@ -237,18 +235,18 @@ proctype control(){
         i=1;
         j=1;
         do
-        :: (i<7) ->
+        :: (i<8) ->
             //printf(" i = %d, processo %d che vale %d\n", i, procnr(i), px[procnr(i)]);
             if 
             :: (theta(i,j) && !px[procnr(i)]) -> PB1(i);
-            :: (result(i,j) && px[procnr(i)]) -> PB0(i); prova(B4, B5)
+            :: (result(i,j) && px[procnr(i)]) -> PB0(i); prova(B5, B6);
             :: else -> skip
             fi;
             if
             :: (j==1) -> j=2;
             :: (j==2) -> j=1 ; i=i+1
             fi
-        :: (i>=7) -> goto endcycle
+        :: (i>=8) -> goto endcycle
         od;
         endcycle: cycle=0
     } 
@@ -262,4 +260,5 @@ init {
     run B2toB3();
     run B3toB4();
     run B4toB5();
+    run B5toB6();
 }
