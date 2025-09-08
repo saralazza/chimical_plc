@@ -18,7 +18,6 @@ mtype B7 = emp;
 
 /*
     PHI
-    ((i == 11) && ((B7 == sol42C || B7 == sol84C) && (B1 == emp || B1 == sol42C)) ) || \
     ((i == 12) && ((B6 == water28C || B6 == water56C) && (B2 == emp || B2 == water28C)) ) \
 */
 
@@ -38,7 +37,6 @@ mtype B7 = emp;
 
 /*
     PSI
-    ((i == 11) && phi(11,j) && (!px[procnr(1)] && !px[procnr(3)] && !px[procnr(8)] && !px[procnr(9)]) ) || \
     ((i == 12) && phi(12,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(7)] && !px[procnr(10)]) ) \
 */
 
@@ -88,7 +86,6 @@ mtype B7 = emp;
 
 /*
     RESULT
-    ((i == 11) && (B7 == emp && (B1 == sol42C))) ||\
     ((i == 12) && (B6 == emp && (B2 == water28C))) \
 */
 
