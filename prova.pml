@@ -245,4 +245,4 @@ spin -a prova.pml
 gcc -DACCEPT_LABELS -DNFAIR=12 -o pan pan.c
 ./pan -a -f
 */
-ltl produces_batches { []<> (B3 == sol70C) }
+ltl full_production_cycle { ([]<> (B3 == sol70C)) && ([]<> (B3 == emp)) }
