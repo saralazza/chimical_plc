@@ -1,0 +1,11 @@
+never produces_batches {    /* !([] (<> ((B3==sol70C)))) */
+T0_init:
+	do
+	:: (! (((B3==sol70C)))) -> goto accept_S4
+	:: (1) -> goto T0_init
+	od;
+accept_S4:
+	do
+	:: (! (((B3==sol70C)))) -> goto accept_S4
+	od;
+}

@@ -238,3 +238,11 @@ init {
     run B7toB1();
     run B6toB2();
 }
+
+
+/*
+spin -a prova.pml
+gcc -DACCEPT_LABELS -DNFAIR=12 -o pan pan.c
+./pan -a -f
+*/
+ltl produces_batches { []<> (B3 == sol70C) }
