@@ -1,10 +1,3 @@
-#
-# COME SI USA:
-#   - 'make' o 'make check-deadlock' : Esegue la verifica di base per deadlock e asserzioni.
-#   - 'make check-liveness'         : Esegue la verifica della proprietà Liveness con fairness.
-#   - 'make clean'                  : Rimuove tutti i file generati dalla verifica.
-# ------------------------------------------------------------------------------------
-
 # promela file
 MODEL = plant.pml
 
