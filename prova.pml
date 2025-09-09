@@ -16,11 +16,6 @@ mtype B7 = emp;
 #define false 0
 #define procnr(i) ((i)-1)
 
-/*
-    PHI
-    ((i == 12) && ((B6 == water28C || B6 == water56C) && (B2 == emp || B2 == water28C)) ) \
-*/
-
 #define phi(i,j)( \
     ((i == 1) && ((B1 == sol42C || B1 == sol82C) && (B3 == emp)) ) || \
     ((i == 2) && ((B2 == water56C || B2 == water28C) && (B3 == emp)) ) || \
@@ -36,10 +31,6 @@ mtype B7 = emp;
     ((i == 12) && ((B6 == water28C || B6 == water56C) && (B2 == emp || B2 == water28C)) ) \
 )
 
-/*
-    PSI
-    ((i == 12) && phi(12,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(7)] && !px[procnr(10)]) ) \
-*/
 
 #define psi(i,j)( \
     ((i == 1) && phi(1,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(5)] && !px[procnr(11)]) ) || \
@@ -56,22 +47,6 @@ mtype B7 = emp;
     ((i == 12) && phi(12,j) && (!px[procnr(2)] && !px[procnr(4)] && !px[procnr(7)] && !px[procnr(10)]) ) \
 )
 
-/*
-    THETA
-    ((i == 1) && psi(1,j) && !psi(5,j) ) || \
-    ((i == 2) && psi(2,j) && !psi(1,j) && !psi(3,j) && !psi(5,j) ) || \
-    ((i == 3) && psi(3,j) && !psi(5,j) ) || \
-    ((i == 4) && psi(4,j) && !psi(1,j) && !psi(3,j) && !psi(5,j)) || \
-    ((i == 5) && psi(5,j) && !psi(6,j) ) || \
-    ((i == 6) && psi(6,j) && !psi(7,j) && !psi(8,j) ) || \
-    ((i == 7) && psi(7,j) ) || \
-    ((i == 8) && psi(8,j) && !psi(7,j) ) || \
-    ((i == 9) && psi(9,j) && !psi(8,j) ) || \
-    ((i == 10) && psi(10,j) && !psi(7,j) ) || \
-    ((i == 11) && psi(11,j) && !psi(1,j) && !psi(3,j) && !psi(8,j) && !psi(9,j) ) || \
-    ((i == 12) && psi(12,j) && !psi(2,j) && !psi(4,j) && !psi(7,j) && !psi(10,j) ) \
-*/
-
 #define theta(i,j) ( \
     ((i == 1) && psi(1,j) && !psi(5,j) ) || \
     ((i == 2) && psi(2,j) && !psi(1,j) && !psi(3,j) && !psi(5,j) ) || \
@@ -87,10 +62,6 @@ mtype B7 = emp;
     ((i == 12) && psi(12,j) && !psi(2,j) && !psi(4,j) && !psi(7,j) && !psi(10,j) ) \
 )
 
-/*
-    RESULT
-    ((i == 12) && (B6 == emp && (B2 == water28C))) \
-*/
 
 #define result(i,j) (\
     ((i == 1) && (B1 == emp && (B3 == sol42C || B3 == sol82C))) || \
@@ -116,7 +87,7 @@ inline PB1(i){
     :: (i==5) -> v11=true; px[procnr(i)]= true; printf("PB1 called: i=5, v11=true\n");
     :: (i==6) -> v12=true; px[procnr(i)]= true; printf("PB1 called: i=6, v12=true\n");
     :: (i==7) -> heater = true; px[procnr(i)]= true; printf("PB1 called: i=7, heater = true\n");
-    :: (i==8) -> v15=true; px[procnr(i)]= true; printf("PB1 called: i=8, v15=true, mixer = true\n");
+    :: (i==8) -> v15=true; px[procnr(i)]= true; printf("PB1 called: i=8, v15=true\n");
     :: (i==9) -> v17=true; px[procnr(i)]= true; printf("PB1 called: i=9, v17=true\n");
     :: (i==10) -> v29=true; px[procnr(i)]= true; printf("PB1 called: i=10, v29=true\n");
     :: (i==11) -> v18=true; v23=true; v22=true; v1=true; v3=true; pump1=true; px[procnr(i)]= true; printf("PB1 called: i=11, v18=true; v23=true; v22=true; v1=true; v3=true; pump1=true\n");
@@ -237,8 +208,6 @@ inline prova3(y){
     fi
 }
 
-
-/* CORREZIONE: Processo 12 usa le valvole di PB1(12) e pump2 */
 proctype B6toB2(){
     do
     :: atomic{
@@ -248,7 +217,6 @@ proctype B6toB2(){
     od
 }
 
-/* CORREZIONE: Processo 11 usa le valvole di PB1(11) e pump1 */
 proctype B7toB1(){
     do
     :: atomic{
@@ -262,12 +230,12 @@ proctype B7toB1(){
 proctype control(){
     int i,j;
     do
-    :: /* Loop esterno per ciclare all'infinito */
-        atomic{ /* Blocco atomico per UN solo ciclo di scansione */
+    :: 
+        atomic{
             i=1;
             j=1;
             do
-            :: (i < 13) -> /* Aumentato a 13 per includere tutti i processi */
+            :: (i < 13) -> 
                 if
                 :: (theta(i,j) && !px[procnr(i)]) -> PB1(i)
                 :: (result(i,j) && px[procnr(i)]) -> PB0(i);
