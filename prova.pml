@@ -182,31 +182,6 @@ proctype coolB6(){
     od
 }
 
-inline prova(y){
-    if
-    :: (y==sol42C) -> printf("\n\n\nsono dentro B6toB2 e B7 è ok\n\n\n");
-    :: else -> skip
-    fi
-}
-inline prova1(y){
-    if
-    :: (y==water28C) -> printf("\n\n\nsono dentro B6toB2 e B6 è ok\n\n\n");
-    :: else -> skip
-    fi
-}
-
-inline prova2(y){
-    if
-    :: (y==sol42C) -> printf("\n\n\nsono dentro B7toB1 e B7 è ok\n\n\n");
-    :: else -> skip
-    fi
-}
-inline prova3(y){
-    if
-    :: (y==water28C) -> printf("\n\n\nsono dentro B7toB1 e B6 è ok\n\n\n");
-    :: else -> skip
-    fi
-}
 
 proctype B6toB2(){
     do
