@@ -241,7 +241,7 @@ init {
 
 
 /*
-spin -a prova.pml
+spin -a plant.pml
 gcc -DACCEPT_LABELS -DNFAIR=12 -o pan pan.c
 ./pan -a -f
 */
