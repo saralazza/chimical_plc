@@ -240,9 +240,4 @@ init {
 }
 
 
-/*
-spin -a plant.pml
-gcc -DACCEPT_LABELS -DNFAIR=12 -o pan pan.c
-./pan -a -f
-*/
 ltl full_production_cycle { ([]<> (B3 == sol70C)) && ([]<> (B3 == emp)) }

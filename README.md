@@ -40,7 +40,7 @@ This is the most fundamental check. It will compile a "safety checker" and run i
 
 To run the safety verification, execute:
 ```bash
-make check-deadlock
+make check-safety
 ```
 You can also just run `make`, as this is the default target.
 
